@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Автосервис Русиново — все услуги</title>
+    <!-- Шрифты и иконки -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            background: #f4f7fc;
+            color: #1a2634;
+            line-height: 1.5;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* ТЁМНАЯ ТЕМА */
+        body.dark-theme {
+            background: #1a2634;
+            color: #e0e9f0;
+        }
+        body.dark-theme .header {
+            background: rgba(20,30,40,0.98);
+            border-bottom-color: #2a4055;
+        }
+        body.dark-theme .service-card,
+        body.dark-theme .testimonial-card,
+        body.dark-theme .modal-content,
+        body.dark-theme .faq-item,
+        body.dark-theme .promo-card,
+        body.dark-theme .contact-block {
+            background: #253544;
+            color: #e0e9f0;
+            border-color: #3a4e62;
+        }
+        body.dark-theme .phone-number {
+            color: #b0d0f0;
+        }
+        body.dark-theme .schedule-item,
+        body.dark-theme .address {
+            background: #2a3b4a;
+            color: #e0e9f0;
+        }
+        body.dark-theme .price-btn {
+            background: #1e3a2a;
+            color: #b0f0c0;
+            border-color: #2ecc71;
+        }
+        body.dark-theme .faq-question {
+            background: #2a3b4a !important;
+        }
+        body.dark-theme .footer {
+            background: #0f1a24;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        /* Header - ИСПРАВЛЕННАЯ ВЕРСИЯ */
+        .header {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(0,20,40,0.08);
+            padding: 8px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(46, 125, 139, 0.1);
+            transition: background 0.3s;
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .menu-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 6px;
+            border-radius: 12px;
+            transition: 0.2s;
+            flex-shrink: 0;
+        }
+        .menu-toggle:hover { background: #e8f0fe; }
+        .menu-toggle span {
+            display: block;
+            width: 20px;
+            height: 2.5px;
+            background: #1a2c3f;
+            border-radius: 6px;
+        }
+
+        .logo {
+            overflow: hidden;
+        }
+        .logo h1 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(130deg, #0b2a41, #2c4b66);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            white-space: nowrap;
+        }
+        .logo span {
+            font-size: 0.65rem;
+            color: #3f5569;
+            display: block;
+            margin-top: 0px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        /* Переключатель темы */
+        .theme-toggle {
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #1d5a8b;
+            transition: 0.2s;
+            flex-shrink: 0;
+        }
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .contact-block {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: #ffffff;
+            padding: 4px 8px 4px 12px;
+            border-radius: 30px;
+            border: 1px solid #d9e2ef;
+            flex-wrap: nowrap;
+            transition: background 0.3s;
+        }
+        .phone-number {
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: #103450;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .online-status {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            background: #e2f3e4;
+            padding: 3px 6px 3px 4px;
+            border-radius: 30px;
+        }
+        .green-dot {
+            width: 8px;
+            height: 8px;
+            background: #2ecc71;
+            border-radius: 50%;
+            box-shadow: 0 0 0 2px rgba(46,204,113,0.2);
+            animation: pulse-green 2s infinite;
+        }
+        .online-status span {
+            font-weight: 600;
+            font-size: 0.7rem;
+            color: #1e5a2b;
+            white-space: nowrap;
+        }
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(46,204,113,0.5); }
+            70% { box-shadow: 0 0 0 6px rgba(46,204,113,0); }
+            100% { box-shadow: 0 0 0 0 rgba(46,204,113,0); }
+        }
+
+        /* Кнопка навигатора */
+        .nav-btn {
+            background: #2ecc71;
+            color: white;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+            flex-shrink: 0;
+        }
+        .nav-btn:hover {
+            transform: scale(1.1);
+            background: #27ae60;
+        }
+        .nav-btn i {
+            font-size: 1rem;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 25px 0 20px;
+        }
+        .hero-content {
+            background: white;
+            border-radius: 30px;
+            padding: 25px 20px;
+            box-shadow: 0 30px 50px -20px rgba(8,40,60,0.3);
+            transition: background 0.3s;
+        }
+        .service-name {
+            font-size: 2.2rem;
+            font-weight: 800;
+            line-height: 1.1;
+            background: linear-gradient(130deg, #12344d, #20507a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        .info-row {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: flex-start;
+        }
+        .address {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #eaf1fa;
+            padding: 10px 18px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #153e5a;
+            transition: background 0.3s;
+            width: 100%;
+        }
+        .address i { font-size: 1.2rem; color: #0070b3; }
+
+        .schedule {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+        }
+        .schedule-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #e2f3e4;
+            padding: 10px 18px;
+            border-radius: 40px;
+            border: 1px solid #b7e0c4;
+            transition: background 0.3s;
+            width: 100%;
+        }
+        .schedule-item i {
+            font-size: 1.1rem;
+            color: #1d6b3c;
+            width: 22px;
+        }
+        .weekdays {
+            color: #0f3b55;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+        .sunday {
+            background: #fdeded;
+            padding: 10px 18px;
+            border-radius: 40px;
+            color: #b33c3c;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid #f5c2c2;
+            font-size: 0.95rem;
+            width: 100%;
+        }
+
+        /* УСЛУГИ */
+        .prices {
+            padding: 30px 0 25px;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #153e5a;
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: #2ecc71;
+            border-radius: 10px;
+            margin-top: 8px;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        .service-card {
+            background: white;
+            border-radius: 25px;
+            padding: 20px;
+            box-shadow: 0 20px 25px -10px rgba(0,55,80,0.1);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(0,100,150,0.05);
+            transition: 0.2s, background 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-3px);
+        }
+        .service-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .service-icon {
+            width: 45px;
+            height: 45px;
+            background: #d4eaf7;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #1d5a8b;
+        }
+        .service-header h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        .service-desc {
+            color: #3c576b;
+            margin: 5px 0 12px;
+            font-size: 0.9rem;
+            flex-grow: 1;
+        }
+        .price-btn {
+            background: none;
+            border: 2px solid #2ecc71;
+            color: #1a5a3a;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 10px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 5px;
+            background: #f0fbf4;
+            width: 100%;
+        }
+        .price-btn i {
+            font-size: 1rem;
+        }
+        .price-btn:hover {
+            background: #2ecc71;
+            color: white;
+            border-color: #2ecc71;
+        }
+
+        /* МОДАЛЬНЫЕ ОКНА (прайсы) */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 15px;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background: white;
+            max-width: 500px;
+            width: 100%;
+            border-radius: 30px;
+            padding: 25px 20px;
+            position: relative;
+            box-shadow: 0 40px 70px -20px #082b3b;
+            border: 1px solid #ffffff70;
+            max-height: 80vh;
+            overflow-y: auto;
+            transition: background 0.3s;
+        }
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #1d5a8b;
+            transition: 0.2s;
+        }
+        .modal-close:hover {
+            color: #b33c3c;
+            transform: scale(1.2);
+        }
+        .modal-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #153e5a;
+            margin-bottom: 15px;
+            padding-right: 25px;
+        }
+        .price-list {
+            list-style: none;
+        }
+        .price-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px dashed #cbdae9;
+            gap: 10px;
+        }
+        .price-list li:last-child {
+            border-bottom: none;
+        }
+        .service-item {
+            font-weight: 600;
+            color: #1f405b;
+            font-size: 0.9rem;
+            flex: 1;
+        }
+        .service-price {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #0b4b35;
+            background: #e0f3e8;
+            padding: 4px 10px;
+            border-radius: 30px;
+            white-space: nowrap;
+            display: inline-block;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        /* ОТЗЫВЫ */
+        .testimonials {
+            padding: 25px 0 35px;
+        }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .testimonial-card {
+            background: white;
+            border-radius: 25px;
+            padding: 20px;
+            box-shadow: 0 18px 25px -10px rgba(0,55,80,0.1);
+            transition: background 0.3s;
+        }
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .avatar {
+            width: 44px;
+            height: 44px;
+            background: #c7dff2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: #1c5a8b;
+            flex-shrink: 0;
+        }
+        .client-info h4 {
+            font-size: 1.1rem;
+        }
+        .client-info .car {
+            font-size: 0.85rem;
+        }
+        .rating {
+            color: #f1c40f;
+            margin: 6px 0 4px;
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+        }
+        .more-reviews-btn {
+            background: white;
+            border: 2px solid #2ecc71;
+            color: #1a5a3a;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 25px;
+            width: 100%;
+            justify-content: center;
+        }
+        .more-reviews-btn:hover {
+            background: #2ecc71;
+            color: white;
+        }
+
+        /* СЛАЙДЕР РАБОТ */
+        .portfolio-slider {
+            padding: 15px 0 25px;
+        }
+        .swiper {
+            width: 100%;
+            padding: 10px 0 30px;
+        }
+        .swiper-slide {
+            text-align: center;
+            height: auto;
+        }
+        .swiper-slide img {
+            width: 100%;
+            border-radius: 20px;
+            height: 180px;
+            object-fit: cover;
+        }
+        .swiper-button-next, .swiper-button-prev {
+            color: white !important;
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            transition: 0.2s;
+        }
+        .swiper-button-next:after, .swiper-button-prev:after {
+            font-size: 16px;
+        }
+        .swiper-button-next:hover, .swiper-button-prev:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .swiper-pagination-bullet-active {
+            background: #2ecc71;
+        }
+
+        /* FAQ */
+        .faq {
+            padding: 25px 0;
+        }
+        .faq-item {
+            background: white;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            transition: background 0.3s;
+        }
+        .faq-question {
+            padding: 16px 18px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            background: #eef3fa;
+            transition: 0.2s;
+            font-size: 0.95rem;
+        }
+        .faq-question:hover {
+            background: #e2eaf5;
+        }
+        .faq-question i {
+            transition: transform 0.3s;
+            font-size: 1rem;
+        }
+        .faq-answer {
+            padding: 0 18px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .faq-answer p {
+            padding: 16px 0;
+            font-size: 0.9rem;
+        }
+
+        /* АКЦИИ */
+        .promo {
+            padding: 25px 0;
+        }
+        .promo-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        .promo-card {
+            border-radius: 25px;
+            padding: 25px;
+            color: white;
+            transition: transform 0.2s;
+        }
+        .promo-card:hover {
+            transform: translateY(-3px);
+        }
+        .promo-card i {
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+        }
+        .promo-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+        .promo-card p {
+            font-size: 0.95rem;
+        }
+
+        /* БЛОК ЗВОНИТЕ */
+        .call-section {
+            background: linear-gradient(125deg, #0b3045, #1d4c6b);
+            border-radius: 30px;
+            padding: 25px 20px;
+            margin: 15px 0 30px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            text-align: center;
+        }
+        .call-text h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+        .call-text p {
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .call-btn {
+            background: #2ecc71;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #0b2b1c;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        /* Футер */
+        .footer {
+            background: #142f40;
+            color: #b0cfeb;
+            padding: 25px 0;
+            border-radius: 30px 30px 0 0;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+        .footer .container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            text-align: center;
+        }
+
+        /* Мобильное меню */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 260px;
+            height: 100vh;
+            background: white;
+            box-shadow: 5px 0 30px rgba(0,30,50,0.3);
+            padding: 25px 20px;
+            transition: left 0.3s ease;
+            z-index: 999;
+            border-radius: 0 25px 25px 0;
+            backdrop-filter: blur(16px);
+            background: rgba(255, 255, 255, 0.97);
+        }
+        .mobile-menu.open { left: 0; }
+        .menu-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(4px);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.2s;
+        }
+        .menu-overlay.active { opacity: 1; visibility: visible; }
+        .mobile-menu ul { list-style: none; margin-top: 30px; }
+        .mobile-menu li { margin-bottom: 20px; }
+        .mobile-menu a {
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #153e5a;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 2px solid #dbeafe;
+            padding-bottom: 8px;
+        }
+        .close-menu {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #1d5a8b;
+        }
+
+        /* Для самых маленьких экранов (до 400px) */
+        @media (max-width: 400px) {
+            .header .container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .header-right {
+                justify-content: space-between;
+            }
+            .phone-number {
+                font-size: 0.8rem;
+            }
+            .online-status span {
+                font-size: 0.65rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding: 0 24px;
+            }
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .promo-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .call-section {
+                flex-direction: row;
+                text-align: left;
+                padding: 30px 35px;
+            }
+            .info-row {
+                flex-direction: row;
+            }
+            .schedule {
+                flex-direction: row;
+                width: auto;
+            }
+            .schedule-item, .sunday {
+                width: auto;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .testimonials-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .promo-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .service-name {
+                font-size: 3.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Мобильное меню -->
+<div class="mobile-menu" id="mobileMenu">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h2 style="font-size: 1.5rem;">Меню</h2>
+        <button class="close-menu" id="closeMenuBtn"><i class="fas fa-times"></i></button>
+    </div>
+    <ul>
+        <li><a href="#hero" class="menu-link"><i class="fas fa-home"></i> Главная</a></li>
+        <li><a href="#prices" class="menu-link"><i class="fas fa-wrench"></i> Услуги и цены</a></li>
+        <li><a href="#portfolio" class="menu-link"><i class="fas fa-images"></i> Наши работы</a></li>
+        <li><a href="#testimonials" class="menu-link"><i class="fas fa-star"></i> Отзывы</a></li>
+        <li><a href="#faq" class="menu-link"><i class="fas fa-question-circle"></i> Вопросы</a></li>
+        <li><a href="#promo" class="menu-link"><i class="fas fa-tags"></i> Акции</a></li>
+    </ul>
+</div>
+<div class="menu-overlay" id="overlay"></div>
+
+<!-- Шапка - ИСПРАВЛЕННАЯ -->
+<header class="header">
+    <div class="container">
+        <div class="header-left">
+            <button class="menu-toggle" id="menuToggle">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="logo">
+                <h1>АВТОСЕРВИС РУСИНОВО</h1>
+                <span>Качество без компромиссов</span>
+            </div>
+        </div>
+        
+        <div class="header-right">
+            <!-- Переключатель темы -->
+            <div class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </div>
+            
+            <!-- Контактный блок (телефон + зелёный кружок) -->
+            <div class="contact-block">
+                <a href="tel:+79165335286" class="phone-number">+7 916 533-52-86</a>
+                <div class="online-status">
+                    <div class="green-dot"></div>
+                    <span>всегда на связи</span>
+                </div>
+            </div>
+            
+            <!-- Кнопка навигатора -->
+            <a href="https://yandex.ru/maps/-/CPeTeHm-" target="_blank" class="nav-btn">
+                <i class="fas fa-location-arrow"></i>
+            </a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2 class="service-name">Русиново<br>Автосервис</h2>
+                <div class="info-row">
+                    <div class="address">
+                        <i class="fas fa-map-marker-alt"></i> ул. Русиново, 143А, Ермолино
+                    </div>
+                    <div class="schedule">
+                        <div class="schedule-item">
+                            <i class="fas fa-calendar-week"></i>
+                            <span class="weekdays">Будни + Сб: 8:00–20:00</span>
+                        </div>
+                        <div class="sunday"><i class="fas fa-calendar-times"></i> Вс — выходной</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- УСЛУГИ -->
+    <section class="prices" id="prices">
+        <div class="container">
+            <h2 class="section-title">Услуги и цены</h2>
+            <div class="services-grid">
+                <!-- 1. Ремонт подвески -->
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon"><i class="fas fa-car-side"></i></div>
+                        <h3>Ремонт подвески</h3>
+                    </div>
+                    <p class="service-desc">Амортизаторы, шаровые, рулевые тяги, рычаги</p>
+                    <button class="price-btn" onclick="openModal('suspensionModal')"><i class="fas fa-file-invoice"></i> Цены</button>
+                </div>
+                <!-- 2. Диагностика -->
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon"><i class="fas fa-stethoscope"></i></div>
+                        <h3>Диагностика</h3>
+                    </div>
+                    <p class="service-desc">Компьютерная, тормозной системы, ABS, ESP</p>
+                    <button class="price-btn" onclick="openModal('diagnosticsModal')"><i class="fas fa-file-invoice"></i> Цены</button>
+                </div>
+                <!-- 3. Шиномонтаж -->
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon"><i class="fas fa-circle"></i></div>
+                        <h3>Шиномонтаж</h3>
+                    </div>
+                    <p class="service-desc">Монтаж/демонтаж, балансировка, ремонт проколов</p>
+                    <button class="price-btn" onclick="openModal('tireModal')"><i class="fas fa-file-invoice"></i> Цены</button>
+                </div>
+                <!-- 4. Замена масла -->
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon"><i class="fas fa-oil-can"></i></div>
+                        <h3>Замена масла</h3>
+                    </div>
+                    <p class="service-desc">Моторное, трансмиссионное, тормозная жидкость</p>
+                    <button class="price-btn" onclick="openModal('oilModal')"><i class="fas fa-file-invoice"></i> Цены</button>
+                </div>
+                <!-- 5. Сход-развал -->
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon"><i class="fas fa-sliders-h"></i></div>
+                        <h3>Сход-развал</h3>
+                    </div>
+                    <p class="service-desc">Регулировка углов установки колес</p>
+                    <button class="price-btn" onclick="openModal('alignmentModal')"><i class="fas fa-file-invoice"></i> Цены</button>
+                </div>
+                <!-- 6. Ремонт двигателя -->
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon"><i class="fas fa-cogs"></i></div>
+                        <h3>Ремонт двигателя</h3>
+                    </div>
+                    <p class="service-desc">Капремонт, ГРМ, чистка форсунок, дросселя</p>
+                    <button class="price-btn" onclick="openModal('engineModal')"><i class="fas fa-file-invoice"></i> Цены</button>
+                </div>
+                <!-- 7. Электрика -->
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon"><i class="fas fa-bolt"></i></div>
+                        <h3>Электрика</h3>
+                    </div>
+                    <p class="service-desc">Генератор, стартер, аккумулятор, сигнализация</p>
+                    <button class="price-btn" onclick="openModal('electricalModal')"><i class="fas fa-file-invoice"></i> Цены</button>
+                </div>
+                <!-- 8. Техобслуживание -->
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon"><i class="fas fa-clipboard-list"></i></div>
+                        <h3>Техобслуживание</h3>
+                    </div>
+                    <p class="service-desc">ТО-1, ТО-2, комплексная проверка</p>
+                    <button class="price-btn" onclick="openModal('maintenanceModal')"><i class="fas fa-file-invoice"></i> Цены</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- МОДАЛЬНЫЕ ОКНА С ПРАЙС-ЛИСТАМИ -->
+    <!-- 1. Ремонт подвески -->
+    <div id="suspensionModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('suspensionModal')">&times;</button>
+            <h3 class="modal-title">Ремонт подвески</h3>
+            <ul class="price-list">
+                <li><span class="service-item">Замена амортизаторов (за шт)</span> <span class="service-price">от 1 700 ₽</span></li>
+                <li><span class="service-item">Замена стоек стабилизатора</span> <span class="service-price">1 000 ₽</span></li>
+                <li><span class="service-item">Замена шаровой опоры</span> <span class="service-price">1 200 ₽</span></li>
+                <li><span class="service-item">Ремонт рычагов (передних/задних)</span> <span class="service-price">от 1 800 ₽</span></li>
+                <li><span class="service-item">Замена рулевых тяг / наконечников</span> <span class="service-price">от 1 500 ₽</span></li>
+                <li><span class="service-item">Ремонт рулевой рейки</span> <span class="service-price">от 5 000 ₽</span></li>
+            </ul>
+        </div>
+    </div>
+    <!-- 2. Диагностика -->
+    <div id="diagnosticsModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('diagnosticsModal')">&times;</button>
+            <h3 class="modal-title">Диагностика</h3>
+            <ul class="price-list">
+                <li><span class="service-item">Компьютерная диагностика двигателя</span> <span class="service-price">1 200 ₽</span></li>
+                <li><span class="service-item">Диагностика тормозной системы</span> <span class="service-price">900 ₽</span></li>
+                <li><span class="service-item">Диагностика ABS/ESP</span> <span class="service-price">900 ₽</span></li>
+                <li><span class="service-item">Проверка трансмиссии / сцепления</span> <span class="service-price">1 000 ₽</span></li>
+                <li><span class="service-item">Полная диагностика авто (комплекс)</span> <span class="service-price">2 500 ₽</span></li>
+            </ul>
+        </div>
+    </div>
+    <!-- 3. Шиномонтаж -->
+    <div id="tireModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('tireModal')">&times;</button>
+            <h3 class="modal-title">Шиномонтаж</h3>
+            <ul class="price-list">
+                <li><span class="service-item">Шиномонтаж R13-15 (комплект)</span> <span class="service-price">2 200 ₽</span></li>
+                <li><span class="service-item">Шиномонтаж R16-17 (комплект)</span> <span class="service-price">2 800 ₽</span></li>
+                <li><span class="service-item">Балансировка 1 колеса</span> <span class="service-price">250 ₽</span></li>
+                <li><span class="service-item">Ремонт прокола (жгут / заплата)</span> <span class="service-price">500 ₽</span></li>
+                <li><span class="service-item">Демонтаж/монтаж шины (легк.)</span> <span class="service-price">400 ₽</span></li>
+            </ul>
+        </div>
+    </div>
+    <!-- 4. Замена масла и жидкостей -->
+    <div id="oilModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('oilModal')">&times;</button>
+            <h3 class="modal-title">Замена масла и жидкостей</h3>
+            <ul class="price-list">
+                <li><span class="service-item">Замена масла в двигателе (до 4л)</span> <span class="service-price">1 900 ₽</span></li>
+                <li><span class="service-item">Замена масла в АКПП/МКПП</span> <span class="service-price">от 2 200 ₽</span></li>
+                <li><span class="service-item">Замена тормозной жидкости</span> <span class="service-price">1 000 ₽</span></li>
+                <li><span class="service-item">Замена антифриза / охлаждающей</span> <span class="service-price">1 300 ₽</span></li>
+                <li><span class="service-item">Замена жидкости ГУР</span> <span class="service-price">900 ₽</span></li>
+            </ul>
+        </div>
+    </div>
+    <!-- 5. Сход-развал -->
+    <div id="alignmentModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('alignmentModal')">&times;</button>
+            <h3 class="modal-title">Регулировка сход-развала</h3>
+            <ul class="price-list">
+                <li><span class="service-item">Сход-развал (передняя ось)</span> <span class="service-price">1 200 ₽</span></li>
+                <li><span class="service-item">Сход-развал (задняя ось)</span> <span class="service-price">1 200 ₽</span></li>
+                <li><span class="service-item">Сход-развал (4x4 / полный)</span> <span class="service-price">2 000 ₽</span></li>
+                <li><span class="service-item">Компьютерная регулировка углов</span> <span class="service-price">1 500 ₽</span></li>
+            </ul>
+        </div>
+    </div>
+    <!-- 6. Ремонт двигателя -->
+    <div id="engineModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('engineModal')">&times;</button>
+            <h3 class="modal-title">Ремонт двигателя</h3>
+            <ul class="price-list">
+                <li><span class="service-item">Капитальный ремонт ДВС (с/у)</span> <span class="service-price">от 25 000 ₽</span></li>
+                <li><span class="service-item">Замена поршней / колец</span> <span class="service-price">от 12 000 ₽</span></li>
+                <li><span class="service-item">Замена прокладки ГБЦ</span> <span class="service-price">от 8 000 ₽</span></li>
+                <li><span class="service-item">Чистка форсунок (комплект)</span> <span class="service-price">2 500 ₽</span></li>
+                <li><span class="service-item">Чистка дроссельной заслонки</span> <span class="service-price">800 ₽</span></li>
+                <li><span class="service-item">Замена свечей зажигания (комплект)</span> <span class="service-price">800 ₽</span></li>
+            </ul>
+        </div>
+    </div>
+    <!-- 7. Электрика -->
+    <div id="electricalModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('electricalModal')">&times;</button>
+            <h3 class="modal-title">Электрика и электрооборудование</h3>
+            <ul class="price-list">
+                <li><span class="service-item">Ремонт генератора / замена</span> <span class="service-price">от 2 500 ₽</span></li>
+                <li><span class="service-item">Ремонт стартера / замена</span> <span class="service-price">от 2 200 ₽</span></li>
+                <li><span class="service-item">Замена аккумулятора (с работой)</span> <span class="service-price">500 ₽</span></li>
+                <li><span class="service-item">Поиск неисправностей электрооборудования</span> <span class="service-price">1 500 ₽</span></li>
+                <li><span class="service-item">Ремонт проводки / освещения</span> <span class="service-price">от 1 000 ₽</span></li>
+            </ul>
+        </div>
+    </div>
+    <!-- 8. Техническое обслуживание -->
+    <div id="maintenanceModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('maintenanceModal')">&times;</button>
+            <h3 class="modal-title">Техническое обслуживание</h3>
+            <ul class="price-list">
+                <li><span class="service-item">ТО-1 (замена масла, фильтров, диагностика)</span> <span class="service-price">3 500 ₽</span></li>
+                <li><span class="service-item">ТО-2 (расширенное, включая тормоза)</span> <span class="service-price">6 500 ₽</span></li>
+                <li><span class="service-item">Комплексная проверка всех узлов</span> <span class="service-price">2 800 ₽</span></li>
+                <li><span class="service-item">Сезонное обслуживание (перед зимой)</span> <span class="service-price">3 200 ₽</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- СЛАЙДЕР РАБОТ -->
+    <section class="portfolio-slider" id="portfolio">
+        <div class="container">
+            <h2 class="section-title">Фото наших работ</h2>
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <!-- ⬇️⬇️⬇️ ТВОИ НАЗВАНИЯ ФАЙЛОВ ⬇️⬇️⬇️ -->
+                    <div class="swiper-slide"><img src="popi.webp" alt="Замена масла"></div>
+                    <div class="swiper-slide"><img src="qwerty.jpeg" alt="Ремонт ходовой"></div>
+                    <div class="swiper-slide"><img src="abcd.jpg" alt="Ремонт двигателя"></div>
+                    <div class="swiper-slide"><img src="asdf.jpg" alt="Шиномонтаж"></div>
+                    <div class="swiper-slide"><img src="iop.jpg" alt="Ремонт КПП"></div>
+                    <div class="swiper-slide"><img src="tyr.jpg" alt="Диагностика"></div>
+                    <!-- ⬆️⬆️⬆️ ТВОИ ФАЙЛЫ ⬆️⬆️⬆️ -->
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ОТЗЫВЫ (первые 3) -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">Отзывы наших клиентов</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="avatar">Д</div>
+                        <div class="client-info">
+                            <h4>Дмитрий С.</h4>
+                            <div class="car">Hyundai Solaris</div>
+                        </div>
+                    </div>
+                    <div class="rating">★★★★★</div>
+                    <p>Быстро нашли причину стука. Заменили сайлентблоки за час. Цена приятно удивила.</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="avatar">Е</div>
+                        <div class="client-info">
+                            <h4>Елена В.</h4>
+                            <div class="car">Kia Rio</div>
+                        </div>
+                    </div>
+                    <div class="rating">★★★★★</div>
+                    <p>Делала шиномонтаж и замену масла. Всё чётко, спасибо!</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="avatar">А</div>
+                        <div class="client-info">
+                            <h4>Андрей К.</h4>
+                            <div class="car">Volkswagen Passat</div>
+                        </div>
+                    </div>
+                    <div class="rating">★★★★★</div>
+                    <p>Ремонтировал двигатель. Сделали раньше срока, дали гарантию.</p>
+                </div>
+            </div>
+            <button class="more-reviews-btn" onclick="openModal('allReviewsModal')">
+                <i class="fas fa-comments"></i> Больше отзывов (15+)
+            </button>
+        </div>
+    </section>
+
+    <!-- МОДАЛЬНОЕ ОКНО СО ВСЕМИ 15 ОТЗЫВАМИ -->
+    <div id="allReviewsModal" class="modal">
+        <div class="modal-content" style="max-width: 650px;">
+            <button class="modal-close" onclick="closeModal('allReviewsModal')">&times;</button>
+            <h3 class="modal-title">Все отзывы (15)</h3>
+            <div style="max-height: 60vh; overflow-y: auto; padding-right: 10px;">
+                <!-- Отзыв 1 -->
+                <div style="background: #f8fbfe; border-radius: 20px; padding: 18px; margin-bottom: 12px;">
+                    <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 8px;">
+                        <div style="width: 42px; height: 42px; background: #c7dff2; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">И</div>
+                        <div><strong>Игорь М.</strong> <span style="color: #6d8aa5; font-size: 0.9rem;">Toyota Camry</span></div>
+                    </div>
+                    <div class="rating">★★★★★</div>
+                    <p style="font-size: 0.95rem;">Отличный сервис! Быстро и качественно заменили масло, ещё и диагностику бесплатно сделали.</p>
+                </div>
+                <!-- Отзыв 2 -->
+                <div style="background: #f8fbfe; border-radius: 20px; padding: 18px; margin-bottom: 12px;">
+                    <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 8px;">
+                        <div style="width: 42px; height: 42px; background: #c7dff2; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">С</div>
+                        <div><strong>Сергей П.</strong> <span style="color: #6d8aa5; font-size: 0.9rem;">Ford Focus</span></div>
+                    </div>
+                    <div class="rating">★★★★★</div>
+                    <p style="font-size: 0.95rem;">Ремонтировал ходовку. Всё сделали чётко, цены адекватные. Буду обращаться ещё.</p>
+                </div>
+                <!-- Отзыв 3 -->
+                <div style="background: #f8fbfe; border-radius: 20px; padding: 18px; margin-bottom: 12px;">
+                    <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 8px;">
+                        <div style="width: 42px; height: 42px; background: #c7dff2; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">О</div>
+                        <div><strong>Ольга Н.</strong> <span style="color: #6d8aa5; font-size: 0.9rem;">Renault Duster</span></div>
+                    </div>
+                    <div class="rating">★★★★★</div>
+                    <p style="font-size: 0.95rem;">Очень довольна шиномонтажом. Быстро, аккуратно, ещё и колёса помыли. Спасибо!</p>
+                </div>
+                <!-- Отзыв 4 -->
+                <div style="background: #f8fbfe; border-radius: 20px; padding: 18px; margin-bottom: 12px;">
+                    <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 8px;">
+                        <div style="width: 42px; height: 42px; background: #c7dff2; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">М</div>
+                        <div><strong>Михаил К.</strong> <span style="color: #6d8aa5; font-size: 0.9rem;">BMW X5</span></div>
+                    </div>
+                    <div class="rating">★★★★★</div>
+                    <p style="font-size: 0.95rem;">Ремонт двигателя сделали за 2 дня, хотя другие обещали неделю. Качество на высоте.</p>
+                </div>
+                <!-- Отзыв 5 -->
+                <div style="background: #f8fbfe; border-radius: 20px; padding: 18px; margin-bottom: 12px;">
+                    <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 8px;">
+                        <div style="width: 42px; height: 42px; background: #c7dff2; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">А</div>
+                        <div><strong>Анна В.</strong> <span style="color: #6d8aa5; font-size: 0.9rem;">Mazda 6</span></div>
+                    </div>
+                    <div class="rating">★★★★★</div>
+                    <p style="font-size: 0.95rem;">Поменяли сцепление, всё работает идеально. Цена порадовала.</p>
+                </div>
+                <!-- Отзыв 6 -->
+                <div style="background: #f8fbfe; border-radius: 20px; padding: 18px; margin-bottom: 12px;">
+                    <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 8px;">
+                        <div style="width: 42px; height: 42px; background: #c7dff2; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">Д</div>
+                        <div><strong>Денис Л.</strong> <span style="color: #6d8aa5; font-size: 0.9rem;">Lada Vesta</span></div>
+                    </div>
+                    <div class="rating">★★★★★</div>
+                    <p style="font-size: 0.95rem;">Делал диагностику, нашли ошибку, сразу исправили. Спасибо!</p>
+                </div>
+                <!-- Отзыв 7 -->
+                <div style="background: #f8fbfe; border-radius: 20px; padding: 18px; margin-bottom: 12px;">
+                    <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 8px;">
+                        <div style="width: 42px; height: 42px; background: #c7dff2; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">Т</div>
+                        <div><strong>Татьяна Р.</strong> <span style="color: #6d8aa5; font-size: 0.9rem;">Nissan Qashqai</span></div>
+                    </div>
+                    <div class="rating">★★★★★</div>
+                    <p style="font-size: 0.95rem;">Очень вежливый персонал, всё объяснили, показали. Теперь только сюда.</p>
+                </div>
+                <!-- Отзыв 8 -->
+                <div style="background: #f8fbfe; border-radius: 20px; padding: 18px; margin-bottom: 12px;">
+                    <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 8px;">
+                        <div style="width: 42px; height: 42px; background: #c7dff2; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">В</div>
+                        <div><strong>Виктор С.</strong> <span style="color: #6d8aa5; font-size: 0.9rem;">Audi Q5</span></div>
+                    </div>
+                    <div class="rating">★★★★★</div>
+                    <p style="font-size: 0.95rem;">Ремонтировал подвеску, оригинальные запчасти. Всё отлично.</p>
+                </div>
+                <!-- Отзыв 9 -->
+                <div style="background: #f8fbfe; border-radius: 20px; padding: 18px; margin-bottom: 12px;">
+                    <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 8px;">
+                        <div style="width: 42px; height: 42px; background: #c7dff2; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">К</div>
+                        <div><strong>Константин Б.</strong> <span style="color: #6d8aa5; font-size: 0.9rem;">Skoda Octavia</span></div>
+                    </div>
+                    <div class="rating">★★★★★</div>
+                    <p style="font-size: 0.95rem;">Делал шумку и диагностику. Ребята знают своё дело. Рекомендую.</p>
+                </div>
+                <!-- Отзыв 10 -->
+                <div style="background: #f8fbfe; border-radius: 20px; padding: 18px; margin-bottom: 12px;">
+                    <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 8px;">
+                        <div style="width: 42px; height: 42px; background: #c7dff2; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">Н</div>
+                        <div><strong>Никита Ф.</strong> <span style="color: #6d8aa5; font-size: 0.9rem;">Mitsubishi Lancer</span></div>
+                    </div>
+                    <div class="rating">★★★★★</div>
+                    <p style="font-size: 0.95rem;">Заменили ГРМ, теперь мотор работает тише. Спасибо за качество.</p>
+                </div>
+                <!-- Отзыв 11 -->
+                <div style="background: #f8fbfe; border-radius: 20px; padding: 18px; margin-bottom: 12px;">
+                    <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 8px;">
+                        <div style="width: 42px; height: 42px; background: #c7dff2; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">Г</div>
+                        <div><strong>Григорий А.</strong> <span style="color: #6d8aa5; font-size: 0.9rem;">Chevrolet Cruze</span></div>
+                    </div>
+                    <div class="rating">★★★★★</div>
+                    <p style="font-size: 0.95rem;">Хороший сервис, всё по делу, без навязывания лишних услуг.</p>
+                </div>
+                <!-- Отзыв 12 -->
+                <div style="background: #f8fbfe; border-radius: 20px; padding: 18px; margin-bottom: 12px;">
+                    <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 8px;">
+                        <div style="width: 42px; height: 42px; background: #c7dff2; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">Л</div>
+                        <div><strong>Лариса М.</strong> <span style="color: #6d8aa5; font-size: 0.9rem;">Kia Sportage</span></div>
+                    </div>
+                    <div class="rating">★★★★★</div>
+                    <p style="font-size: 0.95rem;">Очень приятное обслуживание, чувствуется забота о клиентах.</p>
+                </div>
+                <!-- Отзыв 13 -->
+                <div style="background: #f8fbfe; border-radius: 20px; padding: 18px; margin-bottom: 12px;">
+                    <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 8px;">
+                        <div style="width: 42px; height: 42px; background: #c7dff2; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">П</div>
+                        <div><strong>Павел Ч.</strong> <span style="color: #6d8aa5; font-size: 0.9rem;">Volvo XC90</span></div>
+                    </div>
+                    <div class="rating">★★★★★</div>
+                    <p style="font-size: 0.95rem;">Диагностика и ремонт подвески. Профессионалы своего дела.</p>
+                </div>
+                <!-- Отзыв 14 -->
+                <div style="background: #f8fbfe; border-radius: 20px; padding: 18px; margin-bottom: 12px;">
+                    <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 8px;">
+                        <div style="width: 42px; height: 42px; background: #c7dff2; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">Р</div>
+                        <div><strong>Роман З.</strong> <span style="color: #6d8aa5; font-size: 0.9rem;">Mercedes E-class</span></div>
+                    </div>
+                    <div class="rating">★★★★★</div>
+                    <p style="font-size: 0.95rem;">Обслуживаюсь здесь постоянно. Цены радуют, качество не подводит.</p>
+                </div>
+                <!-- Отзыв 15 -->
+                <div style="background: #f8fbfe; border-radius: 20px; padding: 18px; margin-bottom: 12px;">
+                    <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 8px;">
+                        <div style="width: 42px; height: 42px; background: #c7dff2; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">Ю</div>
+                        <div><strong>Юрий Д.</strong> <span style="color: #6d8aa5; font-size: 0.9rem;">Subaru Forester</span></div>
+                    </div>
+                    <div class="rating">★★★★★</div>
+                    <p style="font-size: 0.95rem;">Спасибо за ремонт КПП, теперь переключения плавные.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ (12 вопросов) -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2 class="section-title">Частые вопросы</h2>
+            <div class="faq-list">
+                <!-- 1 -->
+                <div class="faq-item">
+                    <div class="faq-question"><span>Можно ли оплатить картой?</span> <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer"><p>Да, принимаем карты всех банков, наличные и переводы.</p></div>
+                </div>
+                <!-- 2 -->
+                <div class="faq-item">
+                    <div class="faq-question"><span>Нужна ли предварительная запись?</span> <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer"><p>Желательно, чтобы гарантировать место, но можем принять и сразу.</p></div>
+                </div>
+                <!-- 3 -->
+                <div class="faq-item">
+                    <div class="faq-question"><span>Даёте ли гарантию на ремонт?</span> <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer"><p>Гарантия на новые запчасти — 1 год. На Б/У — только по договорённости.</p></div>
+                </div>
+                <!-- 4 -->
+                <div class="faq-item">
+                    <div class="faq-question"><span>Можно привозить свои запчасти?</span> <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer"><p>Да, можете привозить свои, либо мы поможем подобрать и заказать.</p></div>
+                </div>
+                <!-- 5 -->
+                <div class="faq-item">
+                    <div class="faq-question"><span>Делаете сход-развал?</span> <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer"><p>Да, по запросу клиента — обязательная процедура после ремонта подвески.</p></div>
+                </div>
+                <!-- 6 -->
+                <div class="faq-item">
+                    <div class="faq-question"><span>Ремонтируете ли грузовые авто?</span> <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer"><p>Принимаем микроавтобусы и небольшие фургоны типа ГАЗель.</p></div>
+                </div>
+                <!-- 7 -->
+                <div class="faq-item">
+                    <div class="faq-question"><span>Сколько времени занимает замена масла?</span> <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer"><p>30-40 минут.</p></div>
+                </div>
+                <!-- 8 -->
+                <div class="faq-item">
+                    <div class="faq-question"><span>Работаете в выходные?</span> <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer"><p>Суббота 8-20, воскресенье выходной.</p></div>
+                </div>
+                <!-- 9 -->
+                <div class="faq-item">
+                    <div class="faq-question"><span>Какое масло лучше лить?</span> <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer"><p>Рекомендуем по спецификации вашего авто — подберём бесплатно.</p></div>
+                </div>
+                <!-- 10 -->
+                <div class="faq-item">
+                    <div class="faq-question"><span>Сколько стоит диагностика?</span> <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer"><p>От 900 до 2500 ₽ в зависимости от объёма.</p></div>
+                </div>
+                <!-- 11 -->
+                <div class="faq-item">
+                    <div class="faq-question"><span>Можно ли присутствовать при ремонте?</span> <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer"><p>Да, у нас есть зона для клиентов с чаем и wi-fi.</p></div>
+                </div>
+                <!-- 12 -->
+                <div class="faq-item">
+                    <div class="faq-question"><span>Моете ли авто после ремонта?</span> <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer"><p>Да, после каждого ремонта делаем бесплатную мойку.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- АКЦИИ -->
+    <section class="promo" id="promo">
+        <div class="container">
+            <h2 class="section-title">Акции и скидки</h2>
+            <div class="promo-grid">
+                <div class="promo-card" style="background: linear-gradient(135deg, #2ecc71, #27ae60);">
+                    <i class="fas fa-user-plus"></i>
+                    <h3>Скидка 10%</h3>
+                    <p>на первый визит для новых клиентов</p>
+                </div>
+                <div class="promo-card" style="background: linear-gradient(135deg, #3498db, #2980b9);">
+                    <i class="fas fa-users"></i>
+                    <h3>5% пенсионерам</h3>
+                    <p>при предъявлении удостоверения</p>
+                </div>
+                <div class="promo-card" style="background: linear-gradient(135deg, #e74c3c, #c0392b);">
+                    <i class="fas fa-car"></i>
+                    <h3>Комплекс ТО</h3>
+                    <p>диагностика + масло + фильтры — скидка 15%</p>
+                </div>
+                <div class="promo-card" style="background: linear-gradient(135deg, #f39c12, #e67e22);">
+                    <i class="fas fa-snowflake"></i>
+                    <h3>Сезонное</h3>
+                    <p>шиномонтаж + сход-развал за 3000 ₽</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- БЛОК ЗВОНИТЕ -->
+    <div class="container" id="call">
+        <div class="call-section">
+            <div class="call-text">
+                <h2>Звоните нам!</h2>
+                <p><i class="fas fa-phone-alt"></i> +7 916 533-52-86 • Мы всегда вам ответим</p>
+                <p style="font-size: 0.9rem;">Консультация, запись, подбор запчастей</p>
+            </div>
+            <a href="tel:+79165335286" class="call-btn">
+                <i class="fas fa-headset"></i> Позвонить
+            </a>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div>© 2026 Автосервис Русиново</div>
+        <div><i class="fas fa-map-pin"></i> ул. Русиново, 143А, Ермолино</div>
+        <div><span class="green-dot" style="display: inline-block;"></span> всегда на связи</div>
+    </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+    // Инициализация слайдера
+    const swiper = new Swiper('.mySwiper', {
+        slidesPerView: 1,
+        spaceBetween: 15,
+        loop: true,
+        pagination: { el: '.swiper-pagination', clickable: true },
+        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+        breakpoints: {
+            640: { slidesPerView: 2, spaceBetween: 20 },
+            1024: { slidesPerView: 3, spaceBetween: 25 }
+        }
+    });
+
+    // Переключатель темы
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('i');
+    themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-theme');
+        if (document.body.classList.contains('dark-theme')) {
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        } else {
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        }
+    });
+
+    // FAQ аккордеон
+    document.querySelectorAll('.faq-question').forEach(item => {
+        item.addEventListener('click', () => {
+            const answer = item.nextElementSibling;
+            const icon = item.querySelector('i');
+            if (answer.style.maxHeight) {
+                answer.style.maxHeight = null;
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                icon.style.transform = 'rotate(180deg)';
+            }
+        });
+    });
+
+    // Модальные окна
+    function openModal(modalId) {
+        document.getElementById(modalId).classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeModal(modalId) {
+        document.getElementById(modalId).classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    window.onclick = function(event) {
+        if (event.target.classList.contains('modal')) {
+            event.target.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.modal.active').forEach(modal => {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
+    });
+
+    // Мобильное меню
+    (function() {
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const overlay = document.getElementById('overlay');
+        const closeBtn = document.getElementById('closeMenuBtn');
+        const menuLinks = document.querySelectorAll('.menu-link');
+
+        function openMenu() {
+            mobileMenu.classList.add('open');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeMenu() {
+            mobileMenu.classList.remove('open');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        menuToggle.addEventListener('click', openMenu);
+        closeBtn.addEventListener('click', closeMenu);
+        overlay.addEventListener('click', closeMenu);
+        menuLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                closeMenu();
+            });
+        });
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeMenu();
+        });
+    })();
+</script>
+</body>
+</html>
